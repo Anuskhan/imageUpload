@@ -1,6 +1,6 @@
 const express = require("express")
 const multer = require("multer")
-
+const path = require("path");
 const pino = require('pino');
 const expressPino = require('express-pino-logger');
 const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
@@ -10,7 +10,8 @@ const app = express()
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "src/uploads/")
+      console.log("__dirname",__dirname)
+    cb(null,  path.join(__dirname, '/uploads/'))
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname)
@@ -29,8 +30,8 @@ app.post("/upload/single", uploadStorage.single("file"), (req, res) => {
   return(
     res.status(200).json({
         "status": "success",
-        message: "fetched top seller successfully",
-        file: req.file,
+        message: "Upload successfully",
+        file: req.file.path,
     })
   )
 })
