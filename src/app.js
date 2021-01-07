@@ -1,6 +1,6 @@
 const express = require("express")
 const multer = require("multer")
-const port = process.env.PORT;
+const port = Process.env.PORT || 3000 ;
 
 const pino = require('pino');
 const expressPino = require('express-pino-logger');
@@ -33,6 +33,6 @@ app.post("/upload/single", uploadStorage.single("file"), (req, res) => {
 
 
 
-app.listen(port, () => {
-    logger.info('Server running on port %d', port);
-});
+// app.listen(port, () => {
+//     logger.info('Server running on port %d', port);
+// });
