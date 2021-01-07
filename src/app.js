@@ -21,6 +21,10 @@ const storage = multer.diskStorage({
 const uploadStorage = multer({ storage: storage })
 
 // Single file
+app.get("/",(req, res) => {
+  console.log(req.file)
+  return res.send("server Running!!")
+})
 app.post("/upload/single", uploadStorage.single("file"), (req, res) => {
   console.log(req.file)
   return res.send("Upload successFully")
@@ -28,9 +32,7 @@ app.post("/upload/single", uploadStorage.single("file"), (req, res) => {
 //Multiple files
 
 
-app.listen(3001 || process.env.PORT, () => {
-  console.log("Server on...")
-})
+
 app.listen(port, () => {
     logger.info('Server running on port %d', port);
 });
