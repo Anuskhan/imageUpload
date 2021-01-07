@@ -27,9 +27,15 @@ app.get("/",(req, res) => {
 })
 app.post("/upload/single", uploadStorage.single("file"), (req, res) => {
   console.log(req.file)
-  return res.send("Upload successFully")
+  return(
+    res.status(200).json({
+        "status": "success",
+        message: "fetched top seller successfully",
+        file: req.file,
+    })
+  )
 })
-//Multiple files
+//Multiple files    
 
 
 
