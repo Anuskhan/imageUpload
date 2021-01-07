@@ -1,6 +1,5 @@
 const express = require("express")
 const multer = require("multer")
-const port = Process.env.PORT || 3000 ;
 
 const pino = require('pino');
 const expressPino = require('express-pino-logger');
@@ -36,7 +35,10 @@ app.post("/upload/single", uploadStorage.single("file"), (req, res) => {
   )
 })
 //Multiple files    
-
+var server = app.listen(process.env.PORT || 5000, function () {
+    var port = server.address().port;
+    console.log("Express is working on port " + port);
+  });
 
 
 // app.listen(port, () => {
